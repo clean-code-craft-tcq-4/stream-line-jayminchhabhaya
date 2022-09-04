@@ -1,6 +1,10 @@
 #define CATCH_CONFIG_MAIN
 
 #include "test/catch.hpp"
+#include <iostream>
+#include "checker.hpp"
+using namespace BatteryStatus;
+
 
 TEST_CASE("TEST_CASE 1 :: Detects samples in two ranges") {
   Battery batteryobj;
