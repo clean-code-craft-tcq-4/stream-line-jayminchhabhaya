@@ -15,9 +15,8 @@ TEST_CASE("TEST_CASE 1 :: Generate Parameters of Battery Temperature") {
   
     for (int count=1; count <= 25; ++count)
     {
-        float randval =  std::rand()%100;
-        assert(batteryobj.batteryIsOk(randval,TEMPERATURE) == true);
-        assert(batteryobj.batteryIsOk(randval,SOC) == true);
+        float randval1 =  std::rand()%100;
+        assert(batteryobj.batteryIsOk(randval1,TEMPERATURE) == true);
 	}
 }
 TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
@@ -27,8 +26,7 @@ TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
   
     for (int count=1; count <= 25; ++count)
     {
-        float randval =  std::rand()%100;
-        assert(batteryobj.batteryIsOk(randval,TEMPERATURE) == true);
-        assert(batteryobj.batteryIsOk(randval,SOC) == true);
+        float randval2 =  std::rand()%100;
+        assert(batteryobj.batteryIsOk(randval2,SOC) == true);
 	}
 }
