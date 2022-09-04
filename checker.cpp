@@ -14,14 +14,11 @@ bool ChecksStatus(int min,int max,float value){
 	return true;
 }
 bool Battery::batteryIsOk(float ParametersofBatteryStatus,int BatteryParameterStatus) {
-	//for (const auto& funptr : functptr) {
-      if(!functptr[BatteryParameterStatus](ParametersofBatteryStatus))
+      if(functptr[BatteryParameterStatus](ParametersofBatteryStatus))
 	  {
-		return false;
+		  printoutputtocommunicate(ParametersofBatteryStatus);
 	  }
-    //}
-	printoutputtocommunicate(ParametersofBatteryStatus);
-	return true;
+	  return true;
 }
 bool Battery::batteryTemperatureIsOk(float temperature){
 	return ChecksStatus(MINTEMPERATURE,MAXTEMPERATURE,temperature);
