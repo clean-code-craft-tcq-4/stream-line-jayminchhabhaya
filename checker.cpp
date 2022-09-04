@@ -4,11 +4,8 @@
 using namespace std;
 using namespace BatteryStatus;
 
-void printoutputtocommunicate(std::vector<float>ParametersofBattery){
-	 for (int Parameters : ParametersofBattery) {
-        std::cout << Parameters << ", ";
-    }
-	std::cout <<'\n';
+void printoutputtocommunicate(float ParametersofBattery){
+       std::cout << Parameters << ",";
 }
 bool ChecksStatus(int min,int max,float value){
 	if(value < min || value > max) {
@@ -16,10 +13,9 @@ bool ChecksStatus(int min,int max,float value){
 	}
 	return true;
 }
-bool Battery::batteryIsOk(std::vector<float>ParametersofBatteryStatus) {
-	int i = 0;
+bool Battery::batteryIsOk(float ParametersofBatteryStatus) {
 	for (const auto& funptr : functptr) {
-      if(!funptr(ParametersofBatteryStatus[i++]))
+      if(!funptr(ParametersofBatteryStatus))
 	  {
 		return false;
 	  }
