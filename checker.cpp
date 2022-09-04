@@ -13,13 +13,13 @@ bool ChecksStatus(int min,int max,float value){
 	}
 	return true;
 }
-bool Battery::batteryIsOk(float ParametersofBatteryStatus) {
-	for (const auto& funptr : functptr) {
-      if(!funptr(ParametersofBatteryStatus))
+bool Battery::batteryIsOk(float ParametersofBatteryStatus,int BatteryParameterStatus) {
+	//for (const auto& funptr : functptr) {
+      if(!functptr[BatteryParameterStatus](ParametersofBatteryStatus))
 	  {
 		return false;
 	  }
-    }
+    //}
 	printoutputtocommunicate(ParametersofBatteryStatus);
 	return true;
 }

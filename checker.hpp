@@ -8,6 +8,8 @@ using namespace std;
 #define MAXTEMPERATURE 45
 #define MINSOC 20
 #define MAXSOC 80
+#define TEMPERATURE 0
+#define SOC 1
 
 namespace BatteryStatus
 {
@@ -19,7 +21,7 @@ namespace BatteryStatus
 				functptr.emplace_back(Battery::batterysocIsOk); 
 			};
 			~Battery(){};
-		    bool batteryIsOk(float ParametersofBatteryStatus);
+		    bool batteryIsOk(float ParametersofBatteryStatus,int BatteryParameterStatus);
 			static bool batteryTemperatureIsOk(float temperature);
 			static bool batterysocIsOk(float soc);
 			std::vector<std::function<bool(float)>> functptr;
