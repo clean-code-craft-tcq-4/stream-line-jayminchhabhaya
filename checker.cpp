@@ -5,7 +5,7 @@ using namespace std;
 using namespace BatteryStatus;
 
 void printoutputtocommunicate(float ParametersofBattery){
-       std::cout << ParametersofBattery << ",";
+       std::cout << ParametersofBattery <<std::endl;
 }
 bool ChecksStatus(int min,int max,float value){
 	if(value < min || value > max) {
