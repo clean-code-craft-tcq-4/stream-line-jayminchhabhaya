@@ -8,37 +8,22 @@
 using namespace BatteryStatus;
 
 
-TEST_CASE("TEST_CASE 1 :: Generate Parameters of Battery Temperature") {
+TEST_CASE("TEST_CASE 1 :: Generate Parameters of Battery Temperature and SOC") {
   
     Battery batteryobj;
     std::srand(static_cast<unsigned int>(std::time(nullptr))); 
   
-    for (int count=1; count <= 50; ++count)
+    for (int count=1; count <= 100; ++count)
     {
         assert(batteryobj.batteryIsOk((std::rand()%100),TEMPERATURE) == true);
 	}
-	for (int count=1; count <= 50; ++count)
+	for (int count=1; count <= 100; ++count)
     {
         assert(batteryobj.batteryIsOk((std::rand()%100),SOC) == true);
 	}
 	assert(batteryobj.printoutputtocommunicate() == true);
 }
-TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
-  
-    Battery batteryobj;
-    std::srand(static_cast<unsigned int>(std::time(nullptr))); 
-  
-    for (int count=1; count <= 50; ++count)
-    {
-        assert(batteryobj.batteryIsOk((std::rand()%100),TEMPERATURE) == true);
-	}
-    for (int count=1; count <= 50; ++count)
-    {
-        assert(batteryobj.batteryIsOk((std::rand()%100),SOC) == true);
-	}
-	assert(batteryobj.printoutputtocommunicate() == true);
-}
-TEST_CASE("TEST_CASE 3 :: Fail to Generate Parameters of Battery") {
+TEST_CASE("TEST_CASE 2 :: Fail to Generate Parameters of Battery") {
   
     Battery batteryobj;
     std::srand(static_cast<unsigned int>(std::time(nullptr))); 
