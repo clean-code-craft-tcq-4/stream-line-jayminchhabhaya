@@ -12,12 +12,12 @@ bool printoutputtocommunicate(std::vector<float>temperaturedata,std::vector<floa
 	else
 	{
 		std::cout << "----------Temperature Sensor data----------" <<std::endl;
-		for(int = 0 ; i<temperaturedata.size() ;++i)
+		for(int i= 0 ; i<temperaturedata.size(); ++i)
 		{
 			std::cout << temperaturedata[i] <<std::endl;
 		}
 		std::cout << "----------Soc Sensor data----------" <<std::endl;
-		for(int = 0 ; i<socdata.size() ;++i)
+		for(int i= 0 ; i<socdata.size(); ++i)
 		{
 			std::cout << socdata[i] <<std::endl;
 		}
