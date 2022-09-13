@@ -18,7 +18,7 @@ TEST_CASE("TEST_CASE 1 :: Generate Parameters of Battery Temperature") {
         float randval1 =  std::rand()%100;
         assert(batteryobj.batteryIsOk(randval1,TEMPERATURE) == true);
 	}
-	//assert(batteryobj.printoutputtocommunicate() == true);
+	assert(batteryobj.printoutputtocommunicate() == true);
 }
 TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
   
@@ -30,11 +30,11 @@ TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
         float randval2 =  std::rand()%100;
         assert(batteryobj.batteryIsOk(randval2,SOC) == true);
 	}
-	//assert(batteryobj.printoutputtocommunicate() == true);
+	assert(batteryobj.printoutputtocommunicate() == true);
 }
-/*("TEST_CASE 3 :: Fail to Generate Parameters of Battery") {
+TEST_CASE("TEST_CASE 3 :: Fail to Generate Parameters of Battery") {
   
     Battery batteryobj;
     std::srand(static_cast<unsigned int>(std::time(nullptr))); 
 	assert(batteryobj.printoutputtocommunicate() == false);
-}*/
+}
