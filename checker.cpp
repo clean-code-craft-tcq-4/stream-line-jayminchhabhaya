@@ -12,13 +12,15 @@ bool Battery::printoutputtocommunicate(){
 	else
 	{
 		std::cout << "----------Temperature Sensor data----------" <<std::endl;
-		for (const int& i : temperaturedata) {
-        std::cout << i <<std::endl;
-        }
+		for(int i= 0 ; i<temperaturedata.size()-1; ++i)
+		{
+			std::cout << temperaturedata[i] <<std::endl;
+		}
 		std::cout << "----------Soc Sensor data----------" <<std::endl;
-		for (const int& i : socdata) {
-        std::cout << i <<std::endl;
-        }
+		for(int i= 0 ; i<socdata.size()-1; ++i)
+		{
+			std::cout << socdata[i] <<std::endl;
+		}
 		return true;
 	}
 }
