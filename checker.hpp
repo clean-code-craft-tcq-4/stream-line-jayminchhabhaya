@@ -27,7 +27,7 @@ namespace BatteryStatus
 			static bool batteryTemperatureIsOk(float temperature);
 			static bool batterysocIsOk(float soc);
 			std::vector<std::function<bool(float)>> functptr;
-			bool printoutputtocommunicate(std::vector<float>temperaturedata,std::vector<float>socdata);
+			bool printoutputtocommunicate();
 			
     };
 }
