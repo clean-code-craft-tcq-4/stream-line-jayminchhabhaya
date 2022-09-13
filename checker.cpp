@@ -11,7 +11,7 @@ bool Battery::printoutputtocommunicate(){
 	}
 	else
 	{
-		/*std::cout << "----------Temperature Sensor data----------" <<std::endl;
+		std::cout << "----------Temperature Sensor data----------" <<std::endl;
 		for(int i= 0 ; i<temperaturedata.size()-1; ++i)
 		{
 			std::cout << temperaturedata[i] <<std::endl;
@@ -20,7 +20,7 @@ bool Battery::printoutputtocommunicate(){
 		for(int i= 0 ; i<socdata.size()-1; ++i)
 		{
 			std::cout << socdata[i] <<std::endl;
-		}*/
+		}
 		return true;
 	}
 }
@@ -34,9 +34,11 @@ bool Battery::batteryIsOk(float ParametersofBatteryStatus,int BatteryParameterSt
       if(functptr[BatteryParameterStatus](ParametersofBatteryStatus))
 	  {
 		  if(BatteryParameterStatus){
+			 std::cout << "----------Temperature Sensor data----------" <<std::endl; 
 		     socdata.push_back(ParametersofBatteryStatus);  
 		  }
 		  else{
+			std::cout << "----------Soc Sensor data----------" <<std::endl;
 		   	temperaturedata.push_back(ParametersofBatteryStatus);  
 		  }
 	  }
