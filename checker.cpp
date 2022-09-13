@@ -5,24 +5,24 @@ using namespace std;
 using namespace BatteryStatus;
 
 bool Battery::printoutputtocommunicate(){
-	//if(temperaturedata.empty() || socdata.empty())
-	//{
-	//	return false;
-	//}
-	//else
-	//{
+	if(temperaturedata.empty())
+	{
+		return false;
+	}
+	else
+	{
 		std::cout << "----------Temperature Sensor data----------" <<std::endl;
 		for(int i= 0 ; i<temperaturedata.size()-1; ++i)
 		{
 			std::cout << temperaturedata[i] <<std::endl;
 		}
-		std::cout << "----------Soc Sensor data----------" <<std::endl;
+		/*std::cout << "----------Soc Sensor data----------" <<std::endl;
 		for(int i= 0 ; i<socdata.size()-1; ++i)
 		{
 			std::cout << socdata[i] <<std::endl;
-		}
+		}*/
 		return true;
-	//}
+	}
 }
 bool ChecksStatus(int min,int max,float value){
 	if(value < min || value > max) {
