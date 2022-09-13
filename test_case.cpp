@@ -18,7 +18,7 @@ TEST_CASE("TEST_CASE 1 :: Generate Parameters of Battery Temperature") {
         float randval1 =  std::rand()%100;
         assert(batteryobj.batteryIsOk(randval1,TEMPERATURE) == true);
 	}
-	//assert(batteryobj.printoutputtocommunicate() == true);
+	assert(batteryobj.printoutputtocommunicate() == true);
 }
 TEST_CASE("TEST_CASE 2 :: Generate Parameters of Battery SOC") {
   
