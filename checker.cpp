@@ -4,7 +4,7 @@
 using namespace std;
 using namespace BatteryStatus;
 
-bool printoutputtocommunicate(std::vector<float>temperaturedata,std::vector<float>socdata){
+bool Battery::printoutputtocommunicate(std::vector<float>temperaturedata,std::vector<float>socdata){
 	if(temperaturedata.size() == 0 || socdata.size() == 0)
 	{
 		return false;
