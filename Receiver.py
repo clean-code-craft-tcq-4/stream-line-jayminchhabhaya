@@ -1,17 +1,21 @@
 import sys
 from itertools import chain
 
-Parameter1_ConsolePrint = ['----------Temperature Sensor data----------']
+Parameter1_ConsolePrint =['----------Temperature Sensor data----------']
 Parameter2_ConsolePrint =['----------Soc Sensor data----------']
 
 def ReadBatteryParameterReadingFromConsole():
     LinesRead = sys.stdin.readlines()
+    StrippedReadingFromConsole(LinesRead)
+
+def StrippedReadingFromConsole(LinesRead):
     StrippedData = []
     for Reading in LinesRead:
       Reading = Reading.strip('\n')
       ReadingList = list(Reading.split(','))
       StrippedData.append(ReadingList)
-    return getSensorReadings(StrippedData)
+    getSensorReadings(StrippedData)
+    return StrippedData
 
 def getSensorReadings(Reading):
     # use output string to split 2 parameter readings
@@ -45,9 +49,15 @@ def ReceiverOutput(ParameterList) :
       print(ParameterList[1][message])
       print(' Mininum Reading :', ComputeStatistics(ParameterList[0][message])[0][0], 'Maximum Reading :', ComputeStatistics(ParameterList[0][message])[0][1])
       print(' Moving Average :',ComputeStatistics(ParameterList[0][message])[1])
-    
+
+#def setup_senderdata():
+ ##  testFileName = 'SenderData.txt'
+  # with open(testFileName,'r') as viewFileOpen:
+ #      consoleoutput = viewFileOpen.read()
+  #     print(consoleoutput)    
 
 if __name__ == "__main__":  #pragma no cover
+   #setup_senderdata()
    Paramter1Reading , Parameter2Reading = ReadBatteryParameterReadingFromConsole()
    ParameterList = [Paramter1Reading , Parameter2Reading ] ,[Parameter1_ConsolePrint,Parameter2_ConsolePrint]
    ReceiverOutput(ParameterList)

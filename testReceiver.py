@@ -3,11 +3,20 @@ from Receiver import *
 
 def setup_senderdata():
    testFileName = 'SenderData.txt'
+   console_read = []
    with open(testFileName,'r') as viewFileOpen:
        consoleoutput = viewFileOpen.read()
        print(consoleoutput)
+       console_read.append(consoleoutput)
+   return console_read
 
 class BMS_Receiver(unittest.TestCase):
+  def test_split_Consoleoutput(self):
+    setup_senderdata()
+    input_stream = '----------Temperature Sensor data----------', '19', '29', '7', '34', '40', '35', '22', '25', '20', '22', '----------Soc Sensor data----------', '34', '59', '49', '37', '27', '34', '62', '44', '77', '21'
+    self.assertTrue(StrippedReadingFromConsole(input_stream)==[['----------Temperature Sensor data----------'], ['19'], ['29'], ['7'], ['34'], ['40'], ['35'], ['22'], ['25'], ['20'], ['22'], ['----------Soc Sensor data----------'], ['34'], ['59'], ['49'], ['37'], ['27'], ['34'], ['62'], ['44'], ['77'], ['21']])
+
+
   def test_getSensorReadings_from_StrippedConsoleOutput(self):
     strippedData = [['----------Temperature Sensor data----------'], ['19'], ['29'], ['7'], ['34'], ['40'], ['35'], ['22'], ['25'], ['20'], ['22'], ['----------Soc Sensor data----------'], ['34'], ['59'], ['49'], ['37'], ['27'], ['34'], ['62'], ['44'], ['77'], ['21']]
     self.assertTrue(getSensorReadings(strippedData)[0]==[19, 29, 7, 34, 40, 35, 22, 25, 20 , 22])
@@ -30,5 +39,4 @@ class BMS_Receiver(unittest.TestCase):
     self.assertTrue(ComputeStatistics([34, 59, 49, 37, 27, 34, 62, 44, 77, 21])==((21,77),47.6))
 
 if __name__ == "__main__":  #pragma no cover
-    setup_senderdata()
     unittest.main()
