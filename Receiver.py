@@ -6,7 +6,8 @@ Parameter2_ConsolePrint =['----------Soc Sensor data----------']
 
 def ReadBatteryParameterReadingFromConsole():
     LinesRead = sys.stdin.readlines()
-    StrippedReadingFromConsole(LinesRead)
+    StrippedData = StrippedReadingFromConsole(LinesRead)
+    return getSensorReadings(StrippedData)
 
 def StrippedReadingFromConsole(LinesRead):
     StrippedData = []
@@ -14,7 +15,6 @@ def StrippedReadingFromConsole(LinesRead):
       Reading = Reading.strip('\n')
       ReadingList = list(Reading.split(','))
       StrippedData.append(ReadingList)
-    getSensorReadings(StrippedData)
     return StrippedData
 
 def getSensorReadings(Reading):
