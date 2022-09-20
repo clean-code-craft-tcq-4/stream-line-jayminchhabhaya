@@ -37,14 +37,21 @@ jobs:
 
     - name: collect coverage
       run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html --print-summary
-    - name: Run testReceiver and collect coverage
-      run: |
-        coverage run --branch testReceiver.py
-        coverage html
-        coverage report
     - name: create stream-line artifact
       uses: actions/upload-artifact@v2
       with:
         name: coverage
         path: ./*.html
         retention-days: 21
+    - name: Run and collect coverage for receiver
+      run: |
+        coverage run --branch testReceiver.py
+        coverage html
+        coverage report
+    - name: Upload coverage for Receiver
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage_receiver
+        path: ./htmlcov
+        retention-days: 21
+
