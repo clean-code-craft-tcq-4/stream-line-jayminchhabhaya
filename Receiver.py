@@ -6,7 +6,8 @@ Parameter2_ConsolePrint =['----------SOC Sensor data----------']
 
 def ReadBatteryParameterReadingFromSender(LinesRead):
     StrippedData = StrippedReadingFromConsole(LinesRead)
-    return getSensorReadings(StrippedData)
+    ParameterList = getSensorReadings(StrippedData),[Parameter1_ConsolePrint,Parameter2_ConsolePrint]
+    return ParameterList
 
 def StrippedReadingFromConsole(LinesRead):
     StrippedData = []
@@ -43,14 +44,17 @@ def ComputeStatistics(ParameterList):
     return MinMaxReading , movingAverage
 
 def ReceiverOutput(ParameterList) :
+    ReceiverOutput = ''
     for message in range(0,len(ParameterList[1])):
-      print(''.join(ParameterList[1][message]))
-      print(' Mininum Reading :', ComputeStatistics(ParameterList[0][message])[0][0], '\n', 'Maximum Reading :', ComputeStatistics(ParameterList[0][message])[0][1])
-      print(' Moving Average :',ComputeStatistics(ParameterList[0][message])[1])
-    
+      ParamterName = ''.join(ParameterList[1][message])
+      MinimumReading = ComputeStatistics(ParameterList[0][message])[0][0]
+      MaximumReading =  ComputeStatistics(ParameterList[0][message])[0][1]
+      MovingAverage = ComputeStatistics(ParameterList[0][message])[1]
+      ReceiverOutput += ("{0}\n{1}{2}\n{3}{4}\n{5}{6}\n".format(ParamterName, ' Mininum Reading :', MinimumReading, ' Maximum Reading :', MaximumReading, ' Moving Average :',MovingAverage))
+    print(ReceiverOutput)
+    return ReceiverOutput
 
 if __name__ == "__main__":  #pragma no cover
    SensorOutput = sys.stdin.read().splitlines()
-   Paramter1Reading , Parameter2Reading = ReadBatteryParameterReadingFromSender(SensorOutput)
-   ParameterList = [Paramter1Reading , Parameter2Reading ] ,[Parameter1_ConsolePrint,Parameter2_ConsolePrint]
+   ParameterList = ReadBatteryParameterReadingFromSender(SensorOutput)
    ReceiverOutput(ParameterList)
