@@ -4,15 +4,13 @@ from itertools import chain
 Parameter1_ConsolePrint =['----------Temperature Sensor data----------']
 Parameter2_ConsolePrint =['----------Soc Sensor data----------']
 
-def ReadBatteryParameterReadingFromConsole():
-    LinesRead = sys.stdin.readlines()
+def ReadBatteryParameterReadingFromSender(LinesRead):
     StrippedData = StrippedReadingFromConsole(LinesRead)
     return getSensorReadings(StrippedData)
 
 def StrippedReadingFromConsole(LinesRead):
     StrippedData = []
-    for Reading in LinesRead:
-      Reading = Reading.strip('\n')
+    for Reading in LinesRead:  
       ReadingList = list(Reading.split(','))
       StrippedData.append(ReadingList)
     return StrippedData
@@ -47,17 +45,11 @@ def ComputeStatistics(ParameterList):
 def ReceiverOutput(ParameterList) :
     for message in range(0,len(ParameterList[1])):
       print(ParameterList[1][message])
-      print(' Mininum Reading :', ComputeStatistics(ParameterList[0][message])[0][0], 'Maximum Reading :', ComputeStatistics(ParameterList[0][message])[0][1])
+      print(' Mininum Reading :', ComputeStatistics(ParameterList[0][message])[0][0], '\n', 'Maximum Reading :', ComputeStatistics(ParameterList[0][message])[0][1])
       print(' Moving Average :',ComputeStatistics(ParameterList[0][message])[1])
 
-#def setup_senderdata():
- ##  testFileName = 'SenderData.txt'
-  # with open(testFileName,'r') as viewFileOpen:
- #      consoleoutput = viewFileOpen.read()
-  #     print(consoleoutput)    
-
 if __name__ == "__main__":  #pragma no cover
-   #setup_senderdata()
-   Paramter1Reading , Parameter2Reading = ReadBatteryParameterReadingFromConsole()
+   SensorOutput = sys.stdin.read().splitlines()
+   Paramter1Reading , Parameter2Reading = ReadBatteryParameterReadingFromSender(SensorOutput)
    ParameterList = [Paramter1Reading , Parameter2Reading ] ,[Parameter1_ConsolePrint,Parameter2_ConsolePrint]
    ReceiverOutput(ParameterList)

@@ -3,20 +3,23 @@ from Receiver import *
 
 def setup_senderdata():
    testFileName = 'SenderData.txt'
-   console_read = []
    with open(testFileName,'r') as viewFileOpen:
-       consoleoutput = viewFileOpen.read()
-       print(consoleoutput)
-       console_read.append(consoleoutput)
-   return console_read
+       consoleoutput = viewFileOpen.read().splitlines()
+   return consoleoutput
+
 
 class BMS_Receiver(unittest.TestCase):
-  def test_split_Consoleoutput(self):
-    setup_senderdata()
-    input_stream = '----------Temperature Sensor data----------', '19', '29', '7', '34', '40', '35', '22', '25', '20', '22', '----------Soc Sensor data----------', '34', '59', '49', '37', '27', '34', '62', '44', '77', '21'
-    self.assertTrue(StrippedReadingFromConsole(input_stream)==[['----------Temperature Sensor data----------'], ['19'], ['29'], ['7'], ['34'], ['40'], ['35'], ['22'], ['25'], ['20'], ['22'], ['----------Soc Sensor data----------'], ['34'], ['59'], ['49'], ['37'], ['27'], ['34'], ['62'], ['44'], ['77'], ['21']])
-
-
+  def test_senderOutputRead(self):
+    self.assertEqual(setup_senderdata(),['----------Temperature Sensor data----------', '19', '29', '7', '34', '40', '35', '22', '25', '20', '22', '----------Soc Sensor data----------', '34', '59', '49', '37', '27', '34', '62', '44', '77', '21'])
+    
+  def test_split_Consoleoutput(self):  
+    input_stream = setup_senderdata() 
+    self.assertEqual(StrippedReadingFromConsole(input_stream),[['----------Temperature Sensor data----------'], ['19'], ['29'], ['7'], ['34'], ['40'], ['35'], ['22'], ['25'], ['20'], ['22'], ['----------Soc Sensor data----------'], ['34'], ['59'], ['49'], ['37'], ['27'], ['34'], ['62'], ['44'], ['77'], ['21']])
+    
+  def test_ReadBatteryParameterReadingFromSender(self): 
+    input_stream = setup_senderdata() 
+    self.assertEqual(ReadBatteryParameterReadingFromSender(input_stream),([19, 29, 7, 34, 40, 35, 22, 25, 20, 22], [34, 59, 49, 37, 27, 34, 62, 44, 77, 21]))
+  
   def test_getSensorReadings_from_StrippedConsoleOutput(self):
     strippedData = [['----------Temperature Sensor data----------'], ['19'], ['29'], ['7'], ['34'], ['40'], ['35'], ['22'], ['25'], ['20'], ['22'], ['----------Soc Sensor data----------'], ['34'], ['59'], ['49'], ['37'], ['27'], ['34'], ['62'], ['44'], ['77'], ['21']]
     self.assertTrue(getSensorReadings(strippedData)[0]==[19, 29, 7, 34, 40, 35, 22, 25, 20 , 22])
