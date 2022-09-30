@@ -2,7 +2,7 @@ import sys
 from itertools import chain
 
 Parameter1_ConsolePrint =['----------Temperature Sensor data----------']
-Parameter2_ConsolePrint =['----------Soc Sensor data----------']
+Parameter2_ConsolePrint =['----------SOC Sensor data----------']
 
 def ReadBatteryParameterReadingFromSender(LinesRead):
     StrippedData = StrippedReadingFromConsole(LinesRead)
@@ -44,9 +44,10 @@ def ComputeStatistics(ParameterList):
 
 def ReceiverOutput(ParameterList) :
     for message in range(0,len(ParameterList[1])):
-      print(ParameterList[1][message])
+      print(''.join(ParameterList[1][message]))
       print(' Mininum Reading :', ComputeStatistics(ParameterList[0][message])[0][0], '\n', 'Maximum Reading :', ComputeStatistics(ParameterList[0][message])[0][1])
       print(' Moving Average :',ComputeStatistics(ParameterList[0][message])[1])
+    
 
 if __name__ == "__main__":  #pragma no cover
    SensorOutput = sys.stdin.read().splitlines()
