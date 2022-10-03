@@ -11,36 +11,46 @@ Quality parameters used in this repo and updated in `.github/workflows` folder
 ```mermaid
 flowchart TD
 
-    A(Sender) --\n----------Temperature Sensor data----------\nTempvalue1\n..\nTempvalueN\n----------SOC Sensor data----------\nSOCvalue1..SOCvalueN\n--> B[Prints to console]
+    A(Sender) --\nTemperature Sensor data\nTempvalue1\n..\nTempvalueN\nSOC Sensor data\nSOCvalue1..SOCvalueN\n--> B[Prints to console]
+    B ----> C
     C[Read console output] --> D[Split into individual Readings] 
     D-->E[Get each sensor reading]
     E--Temperature Reading--> F[Numerical Array of values]
     E--SOC Reading--> F
     F ----> G[Parameter List for statistics]
     G ----> H[Statistical Analysis]
-    H --[Find MinMax of each sendor]--> I[Collects Receiver Output]
-    J --[Find MovingAverage of last 5 readings]--> I[Collects Receiver Output]
-    I--\n----------Temperature Sensor data----------\nMininum Reading :xx\nMaximum Reading :xx\nMoving Average :xx\n----------SOC Sensor data----------\nMininum Reading :yy\nMaximum Reading :yy\nMoving Average :yy\n--> K[Prints to console]
+    H --Find MinMax of each sendor--> I[Collects Receiver Output]
+    H --Find MovingAverage of last 5 readings--> I[Collects Receiver Output]
+    I --\nTemperature Sensor data\nMininum Reading :xx\nMaximum Reading :xx\nMoving Average :xx\nSOC Sensor data\nMininum Reading :yy\nMaximum Reading :yy\nMoving Average :yy\n--> K[Prints to console]
 
 ```
 
 
 ## Implemented  functionality
 - Sender sends two battery parameters - Temperature and SOC - in the following format
+
     ----------Temperature Sensor data----------
+    
     Tempvalue1
+    
     ..
+    
     TempvalueN
+    
     ----------SOC Sensor data----------
+    
     SOCvalue1
+    
     ..
+    
     SOCvalueN
+    
 
 - Reads the console output of sender and split by lines
 - Separate each readings into list
 - The readings are now grouped into two.
- 1. Temparature : Reading after "----------Temperature Sensor data----------" and above "----------SOC Sensor data----------"
- 2. SOC : Readings after "----------SOC Sensor data----------" till end of console output
+     1. Temparature : Reading after "----------Temperature Sensor data----------" and above "----------SOC Sensor data----------"
+     2. SOC : Readings after "----------SOC Sensor data----------" till end of console output
 - This approach was used as number of readings from both sensors are not constant. (Based on sender implementation , if the reading is in invalid range , it is skipped)
 - Now this list is converted from string to Numerical Array for further statistical analysis
 - A Parameter list is formed with both sensors' readings and console prints
