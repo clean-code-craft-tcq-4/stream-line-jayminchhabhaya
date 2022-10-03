@@ -3,7 +3,7 @@ from Receiver import *
 
 #Creating sender data for test
 def setup_senderdata(): 
-   testFileName = 'SenderData.txt'
+   testFileName = 'SenderData_forTest.txt'
    with open(testFileName,'r') as viewFileOpen:
        consoleoutput = viewFileOpen.read().splitlines()
    return consoleoutput
