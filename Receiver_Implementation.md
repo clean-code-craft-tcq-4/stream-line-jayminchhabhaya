@@ -12,14 +12,11 @@ Quality parameters used in this repo and updated in `.github/workflows` folder
 flowchart TD
 
     A(Sender) --\nTemperature Sensor data\nTempvalue1\n..\nTempvalueN\nSOC Sensor data\nSOCvalue1..SOCvalueN\n--> B[Prints to console]
-    B ----> C
-    C[Read console output] --> D[Split into individual Readings] 
-    D-->E[Get each sensor reading]
-    E--Temperature Reading--> F[Numerical Array of values]
-    E--SOC Reading--> F
-    F ----> G[Parameter List for statistics]
-    G ----> H[Statistical Analysis]
-    H --Find MinMax of each sendor--> I[Collects Receiver Output]
+    B -->C
+    C[Read console output] --> E[Get each sensor reading]
+    E--Temperature Reading--> H[Statistical Analysis]
+    E--SOC Reading--> H
+    H --Find MinMax of each sensor--> I[Collects Receiver Output]
     H --Find MovingAverage of last 5 readings--> I[Collects Receiver Output]
     I --\nTemperature Sensor data\nMininum Reading :xx\nMaximum Reading :xx\nMoving Average :xx\nSOC Sensor data\nMininum Reading :yy\nMaximum Reading :yy\nMoving Average :yy\n--> K[Prints to console]
 
