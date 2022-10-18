@@ -8,7 +8,7 @@ using namespace BatteryStatus;
 bool Battery::printoutputtocommunicate(std::vector<float> data, string Parameter){
 	if(!data.empty()){
 		std::cout <<  "----------" << Parameter << " Sensor data----------" <<std::endl;
-		for(int i= 0 ; i<data.size()-1; ++i)
+		for(unsigned i= 0 ; i<data.size()-1; ++i)
 		{
 			std::cout << data[i] <<std::endl;
 		}
